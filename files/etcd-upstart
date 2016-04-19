@@ -1,0 +1,20 @@
+# etcd-statsd - Report etcd metrics to statsd
+#
+# This is a daemon that polls one or more servicebus endpoints and
+# sends the metrics to statsd
+#
+description "Report servicebus metrics to statsd"
+author      "Andy Royle"
+
+start on (local-filesystems and net-device-up IFACE!=lo)
+
+respawn
+respawn limit 10 5
+
+setuid nobody
+setgid nogroup
+
+script
+    . /etc/default/etcd-statsd
+    exec $NODEJS $ETCDJS $ETCD_CONFIG_DIR >> $ETCD_LOGFILE
+end script

@@ -1,0 +1,11 @@
+# HEADER: This file is being managed by Puppet. Any manual changes to this file
+# will be overwritten.
+
+<% @environment.each do |val| -%>
+<%= val %>
+<% end -%>
+NODEJS="<%= @nodejs_bin %>"
+ETCDJS="<%= @etcdjs %>"
+ETCD_CONFIG_DIR="<%= @configdir %>"
+ETCD_LOGFILE="<%= @logfile %>"
+DAEMON_ARGS="$ETCDJS $ETCD_CONFIG_DIR $ETCD_LOGFILE"
